@@ -1,0 +1,11 @@
+Package: com.conradkramer.moreinterestingmap
+Name: MoreInterestingMAP
+Depends: firmware (>= 6.0), mobilesubstrate
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Sends all notifications over MAP
+Maintainer: BigBoss <bigboss@thebigboss.org>
+Author: Conrad Kramer
+Section: Tweaks
+dev: conradkramer
+Tag: purpose::extension
