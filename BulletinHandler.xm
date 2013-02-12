@@ -26,20 +26,6 @@ static NSArray *disabledSections = nil;
     [interestingSections removeObject:sectionID];
 }
 
-- (void)observer:(id)observer updateSectionInfo:(BBSectionInfo *)sectionInfo {
-    NSMutableArray *interestingSections = MSHookIvar<NSMutableArray *>(self, "fInterestingSections");
-    [interestingSections removeAllObjects];
-
-    NSString *sectionID = sectionInfo.sectionID;
-    if (![disabledSections containsObject:sectionID]) {
-        [interestingSections addObject:sectionID];
-    }
-
-    %orig();
-
-    [interestingSections removeObject:sectionID];
-}
-
 %end
 
 void BTValueChangedNotificationCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
