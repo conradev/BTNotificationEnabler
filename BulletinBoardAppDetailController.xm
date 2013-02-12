@@ -32,9 +32,9 @@ static NSString * const kViewInLockscreenSpecifierID = @"VIEW_IN_LOCK_SCREEN_ID"
 
 - (NSMutableArray *)specifiers {
     // Exit if the specifiers are already initialized
-    if (MSHookIvar<NSMutableArray *>(self, "_specifiers") != nil) return %orig;
+    if (MSHookIvar<NSMutableArray *>(self, "_specifiers") != nil) return %orig();
     
-    NSMutableArray *specifiers = %orig;
+    NSMutableArray *specifiers = %orig();
     
     // Exit if the list does not have a "View in Lockscreen" toggle
     NSUInteger insertionIndex = [specifiers indexOfObject:[specifiers specifierForID:kViewInLockscreenSpecifierID]];
