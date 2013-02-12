@@ -1,6 +1,6 @@
 Package: com.conradkramer.moreinterestingmap
 Depends: firmware (>= 6.0), mobilesubstrate
-Version: 1.0-1
+Version: 1.0
 Architecture: iphoneos-arm
 Maintainer: BigBoss <bigboss@thebigboss.org>
 Author: Conrad Kramer <support@kramerapps.com>
