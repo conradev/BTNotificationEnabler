@@ -1,11 +1,14 @@
-Package: com.conradkramer.btnotificationenabler
-Name: BTNotificationEnabler
+Package: com.conradkramer.moreinterestingmap
 Depends: firmware (>= 6.0), mobilesubstrate
-Version: 1.0
+Version: 1.0-1
 Architecture: iphoneos-arm
-Description: Sends all notifications over bluetooth
 Maintainer: BigBoss <bigboss@thebigboss.org>
-Author: Conrad Kramer
+Author: Conrad Kramer <support@kramerapps.com>
 Section: Tweaks
+Description: Sends all notifications over MAP
+Name: BTNotificationEnabler
+Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=btnotificationenablerDp
+Website: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=btnotificationenablerDp
+Sponsor: thebigboss.org <http://thebigboss.org>
 dev: conradkramer
 Tag: purpose::extension
