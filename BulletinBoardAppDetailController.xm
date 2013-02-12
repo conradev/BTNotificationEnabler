@@ -42,13 +42,13 @@ static NSString * const kViewInLockscreenSpecifierID = @"VIEW_IN_LOCK_SCREEN_ID"
     insertionIndex++;
 
     BBSectionInfo *sectionInfo = [self effectiveSectionInfo];
-    NSString *key = [NSString stringWithFormat:@"BTEnabled-%@", sectionInfo.sectionID];
+    NSString *key = [NSString stringWithFormat:@"%@%@", BT_ENABLED_PREFIX, sectionInfo.sectionID];
     
     PSSpecifier *bluetoothSpecifier = [PSSpecifier preferenceSpecifierNamed:@"View over Bluetooth" target:self set:@selector(setPreferenceValue:specifier:) get:@selector(readPreferenceValue:) detail:nil cell:[PSTableCell cellTypeFromString:@"PSSwitchCell"] edit:nil];
-    [bluetoothSpecifier setProperty:@"com.conradkramer.moreinterestingmap" forKey:PSDefaultsKey];
+    [bluetoothSpecifier setProperty:BT_DEFAULTS_VALUE forKey:PSDefaultsKey];
     [bluetoothSpecifier setProperty:key forKey:PSKeyNameKey];
     [bluetoothSpecifier setProperty:@YES forKey:PSDefaultValueKey];
-    [bluetoothSpecifier setProperty:@"com.conradkramer.moreinterestingmap.settings" forKey:PSValueChangedNotificationKey];
+    [bluetoothSpecifier setProperty:BT_CHANGE_NOTIFICATION forKey:PSValueChangedNotificationKey];
         
     [specifiers insertObject:bluetoothSpecifier atIndex:insertionIndex];
 

@@ -1,0 +1,3 @@
+#define BT_ENABLED_PREFIX @"BTEnabled-"
+#define BT_DEFAULTS_VALUE @"com.conradkramer.moreinterestingmap"
+#define BT_CHANGE_NOTIFICATION @"com.conradkramer.moreinterestingmap.preferences"
