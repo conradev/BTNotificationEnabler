@@ -8,6 +8,14 @@
 @property(copy, nonatomic) NSString *sectionID;
 @end
 
+@interface BBSettingsGateway : NSObject
+- (void)getBehaviorOverridesWithCompletion:(void (^)(BOOL))completion;
+- (void)setActiveBehaviorOverrideTypesChangeHandler:(void (^)(BOOL))handler;
+@end
+
+static BBSettingsGateway *settingsGateway = nil;
+static BOOL doNotDisturb = NO;
+
 static NSArray *disabledSections = nil;
 
 %hook BulletinHandler
@@ -17,7 +25,7 @@ static NSArray *disabledSections = nil;
     [interestingSections removeAllObjects];
 
     NSString *sectionID = bulletin.sectionID;
-    if (![disabledSections containsObject:sectionID]) {
+    if (![disabledSections containsObject:sectionID] && !doNotDisturb) {
         [interestingSections addObject:sectionID];
     }
 
@@ -50,6 +58,11 @@ void BTValueChangedNotificationCallback(CFNotificationCenterRef center, void *ob
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
     %init();
+
+    settingsGateway = [[BBSettingsGateway alloc] init];
+    void (^overrideHandler)(BOOL) = ^(BOOL enabled) { doNotDisturb = enabled; };
+    [settingsGateway getBehaviorOverridesWithCompletion:overrideHandler];
+    [settingsGateway setActiveBehaviorOverrideTypesChangeHandler:overrideHandler];
 
     BTValueChangedNotificationCallback(NULL, nil, NULL, nil, NULL);
     CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)&BTValueChangedNotificationCallback, (CFStringRef)BT_CHANGE_NOTIFICATION, NULL, 0);
